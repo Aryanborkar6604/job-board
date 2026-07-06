@@ -1,0 +1,42 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px 60px;
+
+  background: white;
+  box-shadow: 0 2px 20px rgba(0,0,0,.08);
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: 800;
+  color: #2563eb;
+}
+
+.nav-center,
+.nav-right {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-center a,
+.nav-right a {
+  text-decoration: none;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.login-btn {
+  padding: 10px 20px;
+  border: 2px solid #2563eb;
+  border-radius: 10px;
+}
+
+.register-btn {
+  background: #2563eb;
+  color: white !important;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
