@@ -1,184 +1,69 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-}
-
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
-}
-
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
-}
-
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
-  width: 100%;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
-
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
-}
+.button-primary,.button-secondary { display: inline-flex; justify-content: center; align-items: center; gap: 9px; min-height: 48px; padding: 0 21px; border: 0; border-radius: 11px; font-weight: 700; transition: .2s ease; }
+.button-primary { color: #fff; background: var(--primary); box-shadow: 0 8px 18px #5146e52b; }
+.button-secondary { color: #4338ca; background: #fff; border: 1px solid #e4e2ff; }
+.button-secondary:hover { background: #f7f6ff; }
+.eyebrow { display: inline-flex; gap: 8px; align-items: center; color: var(--primary); font-size: 12px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; }
+.home-page { overflow: hidden; }
+.hero-wrap { max-width: 1200px; min-height: 570px; margin: 0 auto; padding: 86px 28px 74px; display: grid; grid-template-columns: 1.05fr .95fr; gap: 40px; align-items: center; }
+.hero-copy h1 { max-width: 650px; margin: 18px 0; font: 800 clamp(43px,6vw,70px)/1.08 "Manrope",sans-serif; letter-spacing: -3.7px; color: #172033; }
+.hero-copy h1 span { color: var(--primary); }
+.hero-copy>p { max-width: 500px; margin: 0; color: var(--muted); font-size: 17px; line-height: 1.75; }
+.hero-actions { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+.hero-proof { display: flex; align-items: center; gap: 14px; margin-top: 38px; color: var(--muted); font-size: 13px; }
+.proof-dots { display: flex; }
+.proof-dots i { width: 29px; height: 29px; margin-left: -7px; display: grid; place-items: center; border: 2px solid #f7f8fc; border-radius: 50%; color: #5146e5; background: #e5e3ff; font-style: normal; font-size: 10px; font-weight: 800; }
+.proof-dots i:first-child { margin-left: 0; background: #ffe3cc; color: #9d5428; }
+.proof-dots i:last-child { background: #d8f3e8; color: #16754a; }
+.hero-art { position: relative; min-height: 355px; display: grid; place-items: center; border-radius: 30px; background: radial-gradient(circle at 67% 22%,#fff 0 9%,transparent 10%),linear-gradient(145deg,#ecebff,#e4f3ff); }
+.art-orbit { width: 255px; height: 255px; border: 1px solid #aaa4f5; border-radius: 50%; display: grid; place-items: center; position: relative; }
+.art-orbit:before,.art-orbit:after { content:""; position:absolute; border:1px solid #c4c0fa; border-radius:50%; inset:24px; }
+.art-orbit:after { inset:49px; }
+.art-person { z-index: 1; width: 115px; height: 145px; border-radius: 60px 60px 35px 35px; display: grid; place-items: center; color: white; background: linear-gradient(145deg,#756df1,#5146e5); font: 800 42px "Manrope",sans-serif; box-shadow: 0 18px 36px #5146e548; }
+.float-card { position: absolute; display: flex; align-items: center; gap: 11px; padding: 13px 16px; border: 1px solid #eef0f6; border-radius: 14px; background: white; box-shadow: 0 12px 34px #252f4a16; }
+.float-card strong { display:block; color: var(--ink); font-size:12px; }
+.float-card small { display:block; margin-top:3px; color:var(--muted); font-size:10px; }
+.float-icon { width: 34px; height: 34px; display:grid; place-items:center; border-radius:10px; color:#5146e5; background:#eeedff; font-weight:800; }
+.float-one { top: 54px; left: -10px; }.float-two { right: -12px; bottom: 55px; }
+.home-section { max-width: 1200px; margin: 0 auto; padding: 25px 28px 82px; }
+.section-heading { margin-bottom: 27px; display:flex; justify-content:space-between; align-items:end; gap:20px; }
+.section-heading h2 { margin: 8px 0 0; font: 800 30px "Manrope",sans-serif; letter-spacing:-1px; }
+.section-heading>p { color:var(--muted); font-size:14px; }
+.feature-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.feature-card { padding:25px; border:1px solid var(--line); border-radius:16px; background:white; }
+.feature-icon { width:40px; height:40px; display:grid; place-items:center; border-radius:12px; color:var(--primary); background:var(--soft); font-weight:800; }
+.feature-card h3 { margin:17px 0 8px; font:700 17px "Manrope",sans-serif; }
+.feature-card p { margin:0; color:var(--muted); font-size:14px; line-height:1.65; }
+.jobs-page,.details-page,.dashboard-page { max-width:1160px; min-height:calc(100vh - 76px); margin:0 auto; padding:54px 28px 80px; }
+.page-intro { margin-bottom:28px; }.page-intro h1 { margin:9px 0 7px; font:800 clamp(30px,4vw,42px) "Manrope",sans-serif; letter-spacing:-1.5px; }.page-intro p { color:var(--muted); margin:0; }
+.job-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+.job-card { display:flex; flex-direction:column; padding:23px; border:1px solid var(--line); border-radius:16px; background:white; transition:transform .2s,box-shadow .2s; }
+.job-card:hover { transform:translateY(-3px); box-shadow:0 14px 35px #1f2d4d12; }
+.job-card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+.company-mark { width:45px; height:45px; display:grid; place-items:center; border-radius:13px; color:#5146e5; background:#eeedff; font:800 18px "Manrope",sans-serif; text-transform:uppercase; }
+.job-type { padding:6px 9px; color:#626c7e; border-radius:8px; background:#f5f6f9; font-size:11px; font-weight:700; }
+.job-card h2 { margin:17px 0 4px; font:700 18px "Manrope",sans-serif; }
+.job-company { color:#596477; font-size:14px; }
+.job-meta { display:flex; flex-wrap:wrap; gap:13px; margin:17px 0; color:var(--muted); font-size:12px; }
+.job-summary { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; min-height:60px; margin:0 0 18px; color:#697386; font-size:13px; line-height:1.55; }
+.job-card-link { margin-top:auto; padding-top:14px; border-top:1px solid #f0f1f5; color:var(--primary); font-size:13px; font-weight:700; }
+.state-card { padding:50px 24px; text-align:center; border:1px dashed #d9dce6; border-radius:16px; background:white; }
+.state-card h2 { margin:0 0 8px; font:700 19px "Manrope",sans-serif; }.state-card p { margin:0; color:var(--muted); }
+.details-card { padding:34px; border:1px solid var(--line); border-radius:20px; background:white; box-shadow:0 10px 30px #1f2d4d08; }
+.details-head { display:flex; align-items:center; gap:18px; padding-bottom:24px; border-bottom:1px solid var(--line); }
+.details-head .company-mark { width:60px;height:60px;font-size:23px; }.details-head h1 { margin:0 0 5px; font:800 30px "Manrope",sans-serif; letter-spacing:-.8px; }.details-head p { margin:0;color:var(--muted); }
+.details-meta { display:flex; flex-wrap:wrap; gap:10px; margin:22px 0 28px; }.details-meta span { padding:9px 12px; border-radius:9px; color:#596477; background:#f6f7fa; font-size:13px; }
+.details-card h2 { font:700 18px "Manrope",sans-serif; }.description { color:#566174; line-height:1.8; white-space:pre-line; }
+.apply-box { margin-top:32px; padding:23px; border:1px solid #e7e5ff; border-radius:14px; background:#fafaff; }.apply-box h2 { margin:0 0 6px; }.apply-box p { color:var(--muted); font-size:13px; }
+.file-input { display:block; width:100%; margin:17px 0; padding:11px; border:1px dashed #c9c6ef; border-radius:9px; background:white; color:var(--muted); }
+.auth-shell { min-height:calc(100vh - 76px); padding:56px 20px; display:grid; place-items:center; background:radial-gradient(ellipse at 50% 0,#efeeff 0,transparent 53%); }
+.auth-card { width:min(100%,440px); padding:36px; border:1px solid var(--line); border-radius:20px; background:white; box-shadow:0 18px 50px #252f4a10; }
+.auth-card h1 { margin:10px 0 7px; font:800 30px "Manrope",sans-serif; letter-spacing:-1px; }.auth-subtitle { margin:0 0 26px; color:var(--muted); font-size:14px; }
+.form-field { display:block; margin:0 0 17px; color:#3f4859; font-size:13px; font-weight:700; }.form-field input,.form-field select { display:block; width:100%; height:48px; margin-top:7px; padding:0 13px; border:1px solid #dfe3eb; border-radius:9px; color:var(--ink); background:white; outline:none; }.form-field input:focus,.form-field select:focus { border-color:#827af0; box-shadow:0 0 0 3px #5146e51a; }
+.auth-submit { width:100%; margin-top:5px; }.auth-foot { margin:22px 0 0; text-align:center; color:var(--muted); font-size:13px; }.auth-foot a { color:var(--primary); font-weight:700; }
+.dashboard-page .page-intro { margin-bottom:25px; }.dashboard-layout { display:grid; grid-template-columns:220px minmax(0,1fr); gap:22px; align-items:start; }.dashboard-side { padding:20px; border:1px solid var(--line); border-radius:16px; background:white; }.side-label { color:#9aa2b1; font-size:10px; font-weight:800; letter-spacing:1px; text-transform:uppercase; }.side-link { display:block; margin-top:13px; padding:11px 12px; border-radius:9px; color:#5146e5; background:#f0efff; font-size:13px; font-weight:700; }
+.dashboard-main { min-width:0; }.stats { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-bottom:18px; }.stat-card { padding:20px 22px; border:1px solid var(--line); border-radius:14px; background:white; }.stat-card h2 { margin:0; color:var(--primary); font:800 30px "Manrope",sans-serif; }.stat-card p { margin:4px 0 0; color:var(--muted); font-size:12px; }
+.card-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; }.card { padding:21px; border:1px solid var(--line); border-radius:15px; background:white; }.card h3 { margin:0 0 5px; font:700 17px "Manrope",sans-serif; }.company { color:var(--primary); font-size:13px; font-weight:700; }.info { margin-top:15px; color:#697386; font-size:13px; line-height:1.8; overflow-wrap:anywhere; }.badge { display:inline-block; margin-top:14px; padding:7px 10px; border-radius:8px; color:#178055; background:#e8f8f0; font-size:11px; font-weight:700; }.resume-btn { margin-top:15px; padding:10px 14px; border:0; border-radius:9px; color:white; background:var(--primary); font-size:12px; font-weight:700; }
+.loading-state { padding:90px 20px; color:var(--muted); text-align:center; }
+@media(max-width:900px) { .hero-wrap { min-height:0; padding-top:62px; grid-template-columns:1fr 0.8fr; gap:22px; }.hero-art { min-height:310px; }.job-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.dashboard-layout { grid-template-columns:180px 1fr; } }
+@media(max-width:650px) { .hero-wrap { grid-template-columns:1fr; padding:55px 22px 48px; }.hero-copy h1 { letter-spacing:-2.3px; }.hero-art { min-height:270px; margin:5px 8px 0; }.art-orbit { transform:scale(.82); }.float-one { left:0; }.float-two { right:0; }.home-section { padding:20px 22px 55px; }.section-heading { display:block; }.section-heading>p { margin-top:8px; }.feature-grid,.job-grid,.card-grid { grid-template-columns:1fr; }.jobs-page,.details-page,.dashboard-page { padding:36px 20px 55px; }.details-card { padding:22px; }.details-head h1 { font-size:23px; }.auth-shell { padding:35px 17px; }.auth-card { padding:27px 22px; }.dashboard-layout { grid-template-columns:1fr; }.dashboard-side { padding:15px; }.stats { grid-template-columns:1fr; }.page-intro h1 { font-size:32px; } }
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } }

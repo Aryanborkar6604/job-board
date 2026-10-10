@@ -1,170 +1,48 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import API from "../services/api";
+import Navbar from "../components/Navbar";
+import "../App.css";
 
 function JobDetails() {
   const { id } = useParams();
-
   const [job, setJob] = useState(null);
   const [resume, setResume] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [applied, setApplied] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    fetchJob();
-  }, []);
-
-  const fetchJob = async () => {
-    try {
-      const res = await API.get(`/jobs/${id}`);
-      setJob(res.data);
-    } catch (error) {
-      console.error(error);
-      alert("Failed to load job");
-    } finally {
-      setLoading(false);
-    }
-  };
+    API.get(`/jobs/${id}`).then((res) => setJob(res.data)).catch((err) => { console.error(err); setError("This role may have been removed or is temporarily unavailable."); }).finally(() => setLoading(false));
+  }, [id]);
 
   const applyJob = async () => {
+    setError("");
+    const token = localStorage.getItem("token");
+    if (!token) { setError("Please log in before applying."); return; }
+    if (!resume) { setError("Choose your resume file to continue."); return; }
+    setSubmitting(true);
     try {
-      const token = localStorage.getItem("token");
-
-      if (!token) {
-        alert("Please login first");
-        return;
-      }
-
-      if (!resume) {
-        alert("Please select a resume");
-        return;
-      }
-
-      const formData = new FormData();
-
-      formData.append("jobId", job._id);
-      formData.append("resume", resume);
-
-      await API.post(
-        "/applications/apply",
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-
-      alert("Application submitted successfully!");
-    } catch (error) {
-      console.error(error);
-
-      alert(
-        error.response?.data?.message ||
-          "Failed to apply"
-      );
-    }
+      const formData = new FormData(); formData.append("jobId", job._id); formData.append("resume", resume);
+      await API.post("/applications/apply", formData, { headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" } });
+      setApplied(true);
+    } catch (err) { setError(err.response?.data?.message || "Your application couldn’t be submitted. Please try again."); }
+    finally { setSubmitting(false); }
   };
 
-  if (loading) {
-    return (
-      <h2
-        style={{
-          textAlign: "center",
-          marginTop: "50px",
-        }}
-      >
-        Loading...
-      </h2>
-    );
-  }
-
-  if (!job) {
-    return (
-      <h2
-        style={{
-          textAlign: "center",
-          marginTop: "50px",
-        }}
-      >
-        Job Not Found
-      </h2>
-    );
-  }
-
-  return (
-    <div
-      style={{
-        maxWidth: "800px",
-        margin: "40px auto",
-        padding: "20px",
-      }}
-    >
-      <div
-        style={{
-          border: "1px solid #ddd",
-          borderRadius: "12px",
-          padding: "25px",
-          boxShadow:
-            "0 4px 12px rgba(0,0,0,0.1)",
-        }}
-      >
-        <h1>{job.title}</h1>
-
-        <h2
-          style={{
-            color: "#555",
-          }}
-        >
-          {job.company}
-        </h2>
-
-        <p>
-          📍 <strong>{job.location}</strong>
-        </p>
-
-        <p>
-          💰 <strong>{job.salary}</strong>
-        </p>
-
-        <hr />
-
-        <h3>Job Description</h3>
-
-        <p>{job.description}</p>
-
-        <hr />
-
-        <h3>Apply for this Job</h3>
-
-        <input
-          type="file"
-          accept=".pdf,.doc,.docx"
-          onChange={(e) =>
-            setResume(e.target.files[0])
-          }
-        />
-
-        <br />
-        <br />
-
-        <button
-          onClick={applyJob}
-          style={{
-            background: "#2563eb",
-            color: "white",
-            border: "none",
-            padding: "12px 20px",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontSize: "16px",
-          }}
-        >
-          Apply Now
-        </button>
-      </div>
-    </div>
-  );
+  return <><Navbar /><main className="details-page">{loading ? <div className="loading-state" role="status">Loading role details…</div> : !job ? <div className="state-card"><h2>Role unavailable</h2><p>{error || "We couldn’t find this job."}</p><Link className="button-secondary" style={{ marginTop: 18 }} to="/jobs">Back to jobs</Link></div> : <article className="details-card">
+    <div className="details-head"><span className="company-mark">{job.company?.charAt(0) || "J"}</span><div><h1>{job.title}</h1><p>{job.company}</p></div></div>
+    <div className="details-meta"><span>⌖ {job.location || "Location flexible"}</span>{job.salary && <span>{job.salary}</span>}<span>Open role</span></div>
+    <h2>About the role</h2><p className="description">{job.description || "More details about this role will be available soon."}</p>
+    <section className="apply-box"><h2>{applied ? "Application submitted" : "Interested in this role?"}</h2><p>{applied ? "Your application is on its way. You can track it from your candidate dashboard." : "Attach your resume and send your application."}</p>
+      {!applied && <><label className="form-field" htmlFor="resume-file">Resume</label><input id="resume-file" className="file-input" type="file" accept=".pdf,.doc,.docx" onChange={(event) => setResume(event.target.files?.[0] || null)} />
+      {resume && <p style={{ margin: "0 0 12px", color: "#596477" }}>Selected: {resume.name}</p>}
+      {error && <p role="alert" style={{ color: "#b42318", fontSize: 13 }}>{error} {error.includes("log in") && <Link to="/login" style={{ fontWeight: 700 }}>Log in</Link>}</p>}
+      <button className="button-primary" type="button" onClick={applyJob} disabled={submitting}>{submitting ? "Submitting…" : "Apply for this role"}</button></>}
+      {applied && <Link className="button-primary" to="/candidate">View my applications</Link>}
+    </section>
+  </article>}</main></>;
 }
 
 export default JobDetails;

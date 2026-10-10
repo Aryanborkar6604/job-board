@@ -1,42 +1,12 @@
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 20px 60px;
-
-  background: white;
-  box-shadow: 0 2px 20px rgba(0,0,0,.08);
-}
-
-.logo {
-  font-size: 32px;
-  font-weight: 800;
-  color: #2563eb;
-}
-
-.nav-center,
-.nav-right {
-  display: flex;
-  gap: 25px;
-}
-
-.nav-center a,
-.nav-right a {
-  text-decoration: none;
-  color: #1e293b;
-  font-weight: 600;
-}
-
-.login-btn {
-  padding: 10px 20px;
-  border: 2px solid #2563eb;
-  border-radius: 10px;
-}
-
-.register-btn {
-  background: #2563eb;
-  color: white !important;
-  padding: 10px 20px;
-  border-radius: 10px;
-}
+.navbar { height: 76px; padding: 0 max(5vw, 24px); display: flex; align-items: center; justify-content: space-between; gap: 28px; background: rgba(255,255,255,.94); border-bottom: 1px solid #edf0f5; position: sticky; top: 0; z-index: 10; backdrop-filter: blur(14px); }
+.logo { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font: 800 21px "Manrope",sans-serif; letter-spacing: -.8px; }
+.logo-mark { width: 34px; height: 34px; display: grid; place-items: center; color: white; background: var(--primary); border-radius: 11px; font-size: 17px; }
+.nav-center,.nav-right { display: flex; align-items: center; gap: 30px; }
+.nav-center a,.nav-right a { color: #626c7e; font-weight: 600; font-size: 14px; transition: color .2s; }
+.nav-center a:hover,.nav-center a.active { color: var(--primary); }
+.nav-right { gap: 12px; }
+.nav-right .login-btn { padding: 10px 16px; color: var(--ink); }
+.nav-right .register-btn { padding: 11px 18px; border-radius: 10px; color: white; background: var(--primary); box-shadow: 0 5px 12px #5146e52b; }
+.nav-right .register-btn:hover,.button-primary:hover { background: var(--primary-dark); }
+@media(max-width:640px) { .navbar { height: 66px; padding: 0 18px; gap: 12px; } .logo { font-size: 18px; } .nav-center { gap: 14px; } .nav-center a { font-size: 13px; } .nav-right { gap: 5px; } .nav-right .login-btn { padding: 8px; } .nav-right .register-btn { padding: 9px 11px; } }
+@media(max-width:410px) { .nav-center { display: none; } }
